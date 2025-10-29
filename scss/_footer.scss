@@ -1,0 +1,51 @@
+@use './variables' as *;
+
+.footer {
+  padding: 50px 10%;
+  background-color: #90d4c5;
+  @include display-flex(center, center, column, 20px);
+  color: $green-500;
+  // >* {
+  //   border: 1px solid;
+  // }
+  
+  ul {
+    @include display-flex(center, center, row wrap, 2rem);
+    a {
+      color: $green-800;
+      text-decoration: none;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  .socialIcons {
+    margin-top: 2.5rem;
+    @include display-flex(center, center, row, 1.5rem);
+    >* {
+      @include display-flex(center, center, row, 0);
+      font-size: 1.5rem;
+      transition: all .3s;
+      cursor: pointer;
+      color: $green-800;
+      &:hover {
+        transform: scale(1.2);
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+
+
+.attribution {
+  font-size: 13px;
+  text-align: center;
+
+  a {
+    color: $green-500;
+    font-weight: 700;
+    border-bottom: 2px solid;
+  }
+}

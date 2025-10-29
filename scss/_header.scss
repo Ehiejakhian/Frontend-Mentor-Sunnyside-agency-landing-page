@@ -1,0 +1,137 @@
+@use './variables' as *;
+
+header {
+  background-color: #3DBEFF;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  // border: 2px solid;
+  padding: 20px 10%;
+  color: #fff;
+  @include display-flex(space-between, center, row, 0);
+  
+  .hamburger {
+    z-index: 10;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input, .overlay {
+    display: none;
+    transition: all .75s;
+  }
+  
+  nav {
+    z-index: 10;
+    padding: 40px;
+    position: fixed;
+    top: -100px;
+    width: 80%;
+    background: #fff;
+    transition: all .75s;
+    transform: translateX(200%);
+    @include display-flex(center, center, column, 30px);
+
+    &::before {
+      content: '';
+      border: 10px solid #fff;
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      border-left: 10px solid transparent;
+      border-top: 10px solid transparent;
+    }
+
+    ul {
+      list-style: none;
+      @include display-flex(center, center, column, 30px);
+      li {
+        a {
+          text-decoration: none;
+          color: $grey-550;
+          font-weight: 600;
+          transition: all .3s;
+
+          &:hover {
+            color: $grey-950
+          }
+        }
+      }
+    }
+    button {
+      font-family: 'fraunces', serif;
+      padding: 15px 25px;
+      border: none;
+      text-transform: uppercase;
+      background-color: $yellow-500;
+      font-size: inherit;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all .3s;
+      &:hover {
+        color: #fff;
+        background-color: $grey-950;
+      }
+    }
+  }
+
+  input:checked ~ nav{
+    top: 100px;
+    transform: translateX(0);
+  }
+  input:checked ~ .overlay {
+    display: block;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: rgba(0,0,0,.4);
+  }
+
+  @media (min-width: $tab) {
+    .hamburger, input, .overlay {
+      display: none;
+    }
+    nav {
+      width: auto;
+      position: static;
+      transform: translateX(0);
+      background: transparent;
+      padding: 0;
+      @include display-flex(normal, center, row, 40px);
+
+      &::before {
+        display: none;
+      }
+
+      ul {
+        flex-direction: row;
+        li {
+          a {
+            font-weight: inherit;
+            color: #fff;
+          }
+        }
+      }
+
+      button {
+        color: $grey-950;
+        background-color: #fff;
+        padding: 10px 20px;
+        transition: all .3s;
+        &:hover {
+          background-color: rgba(255,255,255,.3);
+          color: #fff;
+        }
+      }
+    }
+  }
+}
